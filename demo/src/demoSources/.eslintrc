@@ -1,0 +1,11 @@
+{
+  "globals": {
+    "__WIP__": true,
+    "React": true,
+    "Radium": true,
+    "GSAP": true,
+    "customDrag": true,
+    "mountNode": true,
+    "radDiff": true,
+  }
+}

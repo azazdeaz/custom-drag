@@ -1,0 +1,71 @@
+var dragOptions = {
+  onDown(props, monitor) {
+    monitor.setData({
+      initX: props.x,
+      initY: props.y
+    })
+  },
+  onDrag(props, monitor) {
+    const offset = monitor.getDifferenceFromInitialOffset()
+
+    props.onMove({
+      x: monitor.data.initX + offset.x,
+      y: monitor.data.initY + offset.y
+    })
+  }
+}
+
+@customDrag(dragOptions, connect => ({
+  dragRef: connect.getDragRef()
+}))
+class Circle extends React.Component {
+  render() {
+    const {x, y, color, dragRef} = this.props
+
+    return <div ref={dragRef} style={{
+        width: 52,
+        height: 52,
+        borderRadius: 26,
+        backgroundColor: color,
+        transform: `translate(${x}px, ${y}px)`
+      }}/>
+  }
+}
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      circles: [
+        {color: '#001f3f', x: 123, y: 123},
+        {color: '#0074D9', x: 223, y: 123},
+        {color: '#7FDBFF', x: 173, y: 223},
+      ]
+    }
+  }
+
+  handleDrag(idx, x, y) {
+    const {circles} = this.state
+    this.setState({
+      circles: [
+        ...circles.slice(0, idx),
+        {...circles[idx], x, y},
+        ...circles.slice(idx + 1)
+      ]
+    })
+  }
+
+  render() {
+    return <Stage style={{backgroundColor: '#FF4136'}}>
+      {this.state.circles.map((circle, idx) => <Circle
+          {...circle}
+          onMove = {({x, y}) => this.handleDrag(idx, x, y)}
+        />)
+      }
+    </Stage>
+  }
+}
+
+
+
+React.render(<Demo/>, mountNode)

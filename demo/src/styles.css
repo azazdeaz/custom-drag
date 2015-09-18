@@ -1,0 +1,15 @@
+.playground {
+  display: flex;
+  width: 100%;
+}
+.playgroundCode, .playgroundPreview {
+  position: relative;
+  flex: 1;
+  overflow: scroll;
+}
+
+/*.playgroundPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}*/
