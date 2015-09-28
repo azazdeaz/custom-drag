@@ -7,16 +7,24 @@ export default (options, collect) => {
   return ComposedComponent => class CustomDragHOC extends React.Component {
     constructor(props) {
       super(props)
+    }
 
-      this.dragItemRef = dragComponent => {
-        //TODO handle custom ref functions
-        if (dragComponent) {
-          let dragNode = React.findDOMNode(dragComponent)
-          this.dragger = createDragger(dragNode, options, this.composedComponent)
-        }
-        else {
-          this.dragger.dispose()
-        }
+    dragItemRef = dragComponent => {
+      if (typeof dragComponent === 'function') {
+        this.__originalRef = dragComponent
+        return this.dragItemRef
+      }
+
+      if (dragComponent) {
+        let dragNode = React.findDOMNode(dragComponent)
+        this.dragger = createDragger(dragNode, options, this.composedComponent)
+      }
+      else {
+        this.dragger.dispose()
+      }
+
+      if (this.__originalRef) {
+        this.__originalRef(dragComponent)
       }
     }
 
