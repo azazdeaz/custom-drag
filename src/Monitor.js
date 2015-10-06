@@ -81,16 +81,16 @@ export default class Monitor {
     this._drag = true
   }
 
-  setOver(over) {
-    this._over = over
-  }
-
   stopDrag() {
-    this._drag = true
+    this._drag = false
   }
 
   isMoved() {
     return !!this._moved
+  }
+
+  setOver(over) {
+    this._over = over
   }
 
   isOver() {
