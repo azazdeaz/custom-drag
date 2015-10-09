@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import createDragger from './createCustomDrag'
 import Monitor from './Monitor'
 
@@ -16,7 +17,7 @@ export default (options, collect) => {
       }
 
       if (dragComponent) {
-        let dragNode = React.findDOMNode(dragComponent)
+        let dragNode = ReactDOM.findDOMNode(dragComponent)
         this.dragger = createDragger(dragNode, options, this.composedComponent)
       }
       else {
