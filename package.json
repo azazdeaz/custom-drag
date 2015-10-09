@@ -1,6 +1,6 @@
 {
   "name": "custom-drag",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Drag ui helper for React and plain js. Influenced by React DnD",
   "main": "lib/index.js",
   "scripts": {
