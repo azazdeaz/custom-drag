@@ -69,6 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _CustomDragHOC2 = _interopRequireDefault(_CustomDragHOC);
 	
 	exports['default'] = _CustomDragHOC2['default'];
+	exports.react = _interopRequire(_CustomDragHOC);
 	
 	var _createCustomDrag = __webpack_require__(160);
 	
